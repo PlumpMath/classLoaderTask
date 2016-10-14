@@ -1,13 +1,15 @@
 package by.vonotirah.classLoaderTask;
 
-/**
- * Hello world!
- *
- */
-public class App 
-{
-    public static void main( String[] args )
-    {
-        System.out.println( "Hello World!" );
-    }
+import by.vonotirah.classLoaderTask.implementing.JarClassLoader;
+import by.vonotirah.classLoaderTask.implementing.MenuEngineImpl;
+import by.vonotirah.classLoaderTask.interfaces.CustomClassLoader;
+import by.vonotirah.classLoaderTask.interfaces.LClass;
+
+public class App {
+	public static void main(String[] args) throws Exception {
+		MenuEngineImpl menu = new MenuEngineImpl(
+				(CustomClassLoader) new JarClassLoader());
+		LClass loadedClass = (LClass) menu.startEngine().newInstance();
+		loadedClass.run();
+	}
 }
